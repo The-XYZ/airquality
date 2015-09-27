@@ -5,13 +5,9 @@
         android:name="xyz.airquality.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
-<<<<<<< HEAD
-=======
     <permission
         android:name="xyz.airquality.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
-
->>>>>>> 758c52e9a338416e1d5284dee34d6ab0c8f91ae6
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
