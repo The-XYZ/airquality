@@ -117,6 +117,7 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
                         //do intent stuff
                         Intent intent = new Intent(context, RegionDetailActivity.class);
                         intent.putExtra("Station", title1.getText().toString());
+                        intent.putExtra("Remark",parseObjects.get(getAdapterPosition()).getNumber("Remark").intValue());
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                     }

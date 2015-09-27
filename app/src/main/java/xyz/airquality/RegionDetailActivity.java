@@ -1,6 +1,7 @@
 package xyz.airquality;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
@@ -8,9 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
-import com.flaviofaria.kenburnsview.KenBurnsView;
-
+import com.anton46.stepsview.StepsView;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 
 import org.eazegraph.lib.charts.BarChart;
@@ -21,10 +22,13 @@ import java.util.Random;
 public class RegionDetailActivity extends AppCompatActivity {
 
     String station;
+    int remark;
     BarChart NO2, SO2, CO, O3;
     AppCompatButton cropButton, effectButton;
 
     KenBurnsView kenBurnsView;
+    StepsView stepsView;
+    TextView remarkText;
 
 
     public  static  int PERMCO = 4;
@@ -39,6 +43,9 @@ public class RegionDetailActivity extends AppCompatActivity {
 
         cropButton = (AppCompatButton) findViewById(R.id.crop);
         effectButton = (AppCompatButton) findViewById(R.id.Effects);
+        stepsView = (StepsView) findViewById(R.id.stepsView);
+        remarkText = (TextView) findViewById(R.id.remarkText);
+
         cropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +63,7 @@ public class RegionDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
          station = intent.getStringExtra("Station");
+        remark = intent.getIntExtra("Remark",2);
 
         NO2 = (BarChart) findViewById(R.id.barchartNO2);
         SO2 = (BarChart) findViewById(R.id.barchartSO2);
@@ -69,6 +77,15 @@ public class RegionDetailActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(station);
         toolbar.setSubtitle("");
 
+
+        stepsView.setLabels(new String[]{"","","",""})
+                .setBarColorIndicator(getResources().getColor(R.color.material_blue_grey_800))
+                .setProgressColorIndicator(getColorForPollutionLevel(remark))
+                .setLabelColorIndicator(getResources().getColor(R.color.orange))
+                .setCompletedPosition(remark-1)
+                .drawView();
+
+        remarkText.setText(getTextForPollutionLevel(remark));
 
         loadData();
 
@@ -183,5 +200,35 @@ public class RegionDetailActivity extends AppCompatActivity {
             return "#00ff00";
         }
 
+    }
+
+    private int getColorForPollutionLevel(int number) {
+        switch (number) {
+            case 1:
+                return Color.GREEN;
+            case 2:
+                return Color.parseColor("#FFA500");
+            case 3:
+                return Color.MAGENTA;
+            case 4:
+                return Color.RED;
+            default:
+                return Color.YELLOW;
+        }
+    }
+
+    private String getTextForPollutionLevel(int number) {
+        switch (number) {
+            case 1:
+                return "Safe";
+            case 2:
+                return "Moderate";
+            case 3:
+                return "Unsafe";
+            case 4:
+                return "Highly unsafe";
+            default:
+                return "Moderate";
+        }
     }
 }
