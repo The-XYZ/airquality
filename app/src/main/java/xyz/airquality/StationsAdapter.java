@@ -46,6 +46,7 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
 
         viewHolder.title1.setText(parseObjects.get(position).getString("Station"));
         viewHolder.title2.setText(getTextForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
+        viewHolder.itemImage.setImageResource(getDrawableForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
 
     }
     public  class ViewHolder extends RecyclerView.ViewHolder {
@@ -57,7 +58,7 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
         public ViewHolder(View itemLayoutView) {
             super(itemLayoutView);
 
-//            indicator = itemLayoutView.findViewById(R.id.indicator);
+            indicator = itemLayoutView.findViewById(R.id.indicator);
             title1 = (TextView) itemLayoutView.findViewById(R.id.title1);
             title2 = (TextView) itemLayoutView.findViewById(R.id.title2);
             itemImage = (ImageView) itemLayoutView.findViewById(R.id.item_image);
@@ -89,15 +90,15 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
     private int getDrawableForPollutionLevel(int number) {
             switch (number) {
                 case 1:
-                    return R.drawable.ic_menu;
+                    return R.drawable.safe;
                 case 2:
-                    return R.drawable.ic_menu;
+                    return R.drawable.moderate;
                 case 3:
-                    return R.drawable.ic_menu;
+                    return R.drawable.unsafe;
                 case 4:
-                    return R.drawable.ic_menu;
+                    return R.drawable.highunsafe;
                 default:
-                    return R.drawable.ic_menu;
+                    return R.drawable.moderate;
             }
     }
 
@@ -116,4 +117,18 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
         }
     }
 
+    private int getColorForPollutionLevel(int number) {
+        switch (number) {
+            case 1:
+                return R.drawable.safe;
+            case 2:
+                return R.drawable.moderate;
+            case 3:
+                return R.drawable.unsafe;
+            case 4:
+                return R.drawable.highunsafe;
+            default:
+                return R.drawable.moderate;
+        }
+    }
 }
