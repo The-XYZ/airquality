@@ -183,4 +183,12 @@ public class RegionDetailActivity extends AppCompatActivity {
     }
 
 
+    public String genColor(int a ,int b){
+        if(a>b){
+            return "#ff0000";
+        }else{
+            return "#00ff00";
+        }
+
+    }
 }
