@@ -14,6 +14,8 @@ import android.view.MenuItem;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import xyz.airquality.Fragments.DirectionsFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
@@ -50,11 +52,12 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
-            case R.id.settings:{
+                break;
+            case R.id.settings:
                 Intent i = new Intent(MainActivity.this, ComparisonActivity.class);
                 startActivity(i);
-            }
-                return true;
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -77,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
                 fragment = new HomeFragment();
+                break;
+            case R.id.nav_directions:
+                fragment = new DirectionsFragment();
                 break;
         }
 

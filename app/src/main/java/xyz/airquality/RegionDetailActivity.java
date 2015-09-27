@@ -3,19 +3,17 @@ package xyz.airquality;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.flaviofaria.kenburnsview.KenBurnsView;
 
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;
 
-import org.eazegraph.lib.charts.PieChart;
-import org.eazegraph.lib.communication.IOnItemFocusChangedListener;
-import org.eazegraph.lib.models.PieModel;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class RegionDetailActivity extends AppCompatActivity {
@@ -23,6 +21,10 @@ public class RegionDetailActivity extends AppCompatActivity {
     String station;
     BarChart NO2, SO2, CO, O3;
 
+
+    AppCompatButton cropButton, effectButton;
+
+    KenBurnsView kenBurnsView;
 
 
     public  static  int PERMCO = 4;
@@ -35,6 +37,23 @@ public class RegionDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_region_detail);
 
+        cropButton = (AppCompatButton) findViewById(R.id.crop);
+        effectButton = (AppCompatButton) findViewById(R.id.Effects);
+        cropButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i  = new Intent(RegionDetailActivity.this, Crops.class);
+                startActivity(i);
+            }
+        });
+        effectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i  = new Intent(RegionDetailActivity.this, Effects.class);
+                startActivity(i);
+            }
+        });
+
         Intent intent = getIntent();
          station = intent.getStringExtra("Station");
 
@@ -43,6 +62,8 @@ public class RegionDetailActivity extends AppCompatActivity {
         CO = (BarChart) findViewById(R.id.barchartCO);
         O3 = (BarChart) findViewById(R.id.barchartO3);
 
+        kenBurnsView = (KenBurnsView) findViewById(R.id.kenburns);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(station);
@@ -50,6 +71,17 @@ public class RegionDetailActivity extends AppCompatActivity {
 
 
         loadData();
+
+        switch (station) {
+            case "DCE":
+                kenBurnsView.setImageResource(R.drawable.image_dce);
+                break;
+            case "NSIT Dwarka":
+                kenBurnsView.setImageResource(R.drawable.image_nsit);
+                break;
+            case "Mandir Marg":
+                kenBurnsView.setImageResource(R.drawable.image_mandir_marg);
+        }
 
 
     }
