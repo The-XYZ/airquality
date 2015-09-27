@@ -7,6 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.parse.ParseObject;
+
+import java.util.List;
 
 /**
  * Created by naman on 27/09/15.
@@ -14,11 +20,13 @@ import android.view.animation.AnimationUtils;
 public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHolder> {
 
     private Activity context;
+    private List<ParseObject> parseObjects;
 
     private int lastPosition = -1;
 
-    public StationsAdapter(Activity context) {
+    public StationsAdapter(Activity context, List<ParseObject> parseObjects) {
         this.context = context;
+        this.parseObjects = parseObjects;
     }
 
     @Override
@@ -36,15 +44,22 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
 
         setAnimation(viewHolder.itemView, position);
 
+        viewHolder.title1.setText(parseObjects.get(position).getString("Station"));
+
     }
     public  class ViewHolder extends RecyclerView.ViewHolder {
 
         View indicator;
+        TextView title1, title2;
+        ImageView itemImage;
 
         public ViewHolder(View itemLayoutView) {
             super(itemLayoutView);
 
 //            indicator = itemLayoutView.findViewById(R.id.indicator);
+            title1 = (TextView) itemLayoutView.findViewById(R.id.title1);
+            title2 = (TextView) itemLayoutView.findViewById(R.id.title2);
+            itemImage = (ImageView) itemLayoutView.findViewById(R.id.item_image);
 
         }
     }
@@ -52,7 +67,7 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return 5;
+        return parseObjects.size();
     }
 
     private void setAnimation(View viewToAnimate, int position) {
@@ -64,7 +79,8 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
         }
     }
 
-    public void updateDataset() {
+    public void updateDataset(List<ParseObject> parseObjects) {
+        this.parseObjects = parseObjects;
         notifyDataSetChanged();
     }
 

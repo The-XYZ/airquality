@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root_view"
     android:layout_width="130dp"
-    android:layout_height="170dp"
+    android:layout_height="210dp"
     android:foreground="?selectableItemBackgroundBorderless"
     android:paddingLeft="35dp"
     app:cardUseCompatPadding="true">
@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/item_image"
-            android:layout_width="130dp"
+            android:layout_width="150dp"
             android:layout_height="120dp"
             android:layout_alignParentTop="true"
             android:layout_below="@+id/indicator"
