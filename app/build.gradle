@@ -13,7 +13,23 @@ android {
 
         multiDexEnabled true
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('airquality_debug.jks')
+            storePassword "airquality"
+            keyAlias "cert"
+            keyPassword "airquality"
+        }
+    }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
