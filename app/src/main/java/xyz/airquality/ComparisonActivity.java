@@ -47,8 +47,8 @@ public class ComparisonActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new ComparisonHourly(), "Hourly");
-        adapter.addFragment(new ComparisonDaily(), "Daily");
+        adapter.addFragment(new ComparisonHourly(), "Daily");
+        adapter.addFragment(new ComparisonDaily(), "Hourly");
         viewPager.setAdapter(adapter);
     }
 

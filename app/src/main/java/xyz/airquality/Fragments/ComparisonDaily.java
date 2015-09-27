@@ -50,7 +50,7 @@ public class ComparisonDaily extends Fragment {
     private BarChartView mChartOne;
     private ImageButton mPlayOne;
     private boolean mUpdateOne;
-    private final String[] mLabelsOne= {"1 h", "2 h", "3 h", "4 h", "5 h"};
+    private final String[] mLabelsOne= {"1 pm", "2 pm", "3 pm", "4 pm", "5 pm"};
     private final float [][] mValuesOne = {{Float.parseFloat(String.valueOf(gen())+".0f"), Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}, {Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}};
 
 
@@ -58,7 +58,7 @@ public class ComparisonDaily extends Fragment {
     private BarChartView mChartTwo;
     private ImageButton mPlayTwo;
     private boolean mUpdateTwo;
-    private final String[] mLabelsTwo= {"1 h", "2 h", "3 h", "4 h", "5 h"};
+    private final String[] mLabelsTwo= {"1 pm", "2 pm", "3 pm", "4 pm", "5 pm"};
     private final float [][] mValuesTwo =  {{Float.parseFloat(String.valueOf(gen())+".0f"), Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}, {Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}};
 
     private TextView mTextViewTwo;
@@ -68,7 +68,7 @@ public class ComparisonDaily extends Fragment {
     private BarChartView mChartThree;
     private ImageButton mPlayThree;
     private boolean mUpdateThree;
-    private final String[] mLabelsThree= {"1 h", "2 h", "3 h", "4 h", "5 h"};
+    private final String[] mLabelsThree= {"1 pm", "2 pm", "3 pm", "4 pm", "5 pm"};
     private final float[][] mValuesThree =  {{Float.parseFloat(String.valueOf(gen())+".0f"), Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}, {Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}};
 
 
