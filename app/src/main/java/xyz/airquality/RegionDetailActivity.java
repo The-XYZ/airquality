@@ -11,6 +11,8 @@ import android.view.View;
 
 import com.flaviofaria.kenburnsview.KenBurnsView;
 
+import com.flaviofaria.kenburnsview.KenBurnsView;
+
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;
 
@@ -20,6 +22,8 @@ public class RegionDetailActivity extends AppCompatActivity {
 
     String station;
     BarChart NO2, SO2, CO, O3;
+
+    KenBurnsView kenBurnsView;
 
 
     AppCompatButton cropButton, effectButton;
