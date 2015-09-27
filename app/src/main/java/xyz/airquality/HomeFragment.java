@@ -21,6 +21,9 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.TileOverlayOptions;
+import com.google.maps.android.heatmaps.HeatmapTileProvider;
+import com.google.maps.android.heatmaps.WeightedLatLng;
 import com.parse.FindCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -49,6 +52,8 @@ public class HomeFragment extends Fragment {
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.menu);
         ab.setDisplayHomeAsUpEnabled(true);
+
+        mMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).getMap();
 
         spinner=(Spinner)rootView.findViewById(R.id.spinner_nav);
         spinner.setVisibility(View.VISIBLE);
@@ -92,7 +97,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void loadStationFromParse(String state) {
+    private void loadStationFromParse(final String state) {
 
         ParseQuery query = ParseQuery.getQuery("StateRemark");
         query.whereEqualTo("State", state);
@@ -102,6 +107,7 @@ public class HomeFragment extends Fragment {
             public void done(final List<ParseObject> objects, com.parse.ParseException e) {
                 if (e==null) {
                     stationsAdapter.updateDataset(objects);
+                    createHeatMap(state, objects);
                 } else {
                     e.printStackTrace();
                 }
@@ -110,8 +116,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void addToMap(String latlong,String title){
-        mMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).getMap();
-
 
         MarkerOptions markerOptions;
         LatLng position;
@@ -129,5 +133,29 @@ public class HomeFragment extends Fragment {
 
         mMap.animateCamera(cameraPosition);
 
+    }
+
+
+    private void createHeatMap(String state, List<ParseObject> stations) {
+        List<StatePollutionObject> states = new ArrayList<>();
+        for (ParseObject object : stations) {
+            states.add(new StatePollutionObject(state,object.getParseGeoPoint("latlon2").getLatitude(),object.getParseGeoPoint("latlon2").getLongitude(),object.getNumber("Remark").intValue()));
+        }
+
+        List<WeightedLatLng> pointList = new ArrayList<WeightedLatLng>();
+        for (StatePollutionObject statesPollutionObject : states) {
+            pointList.add(
+                    new WeightedLatLng(
+                            new LatLng(statesPollutionObject.latitude,
+                                    statesPollutionObject.longitude),
+                            (statesPollutionObject.level)));
+        }
+        if (!pointList.isEmpty()) {
+            HeatmapTileProvider provider =
+                    new HeatmapTileProvider.Builder()
+                            .weightedData(pointList) //FIXME: this comes to be null sometimes
+                            .build();
+            mMap.addTileOverlay(new TileOverlayOptions().tileProvider(provider));
+        }
     }
 }

@@ -3,6 +3,10 @@
     <color name="colorPrimary">#CDDC39</color>
     <color name="colorPrimaryDark">#AFB42B</color>
     <color name="colorAccent">#FF4081</color>
+
+
     <color name="window_background">#FFF5F5F5</color>
+
+    <color name="color_orange">#FFA500</color>
 
 </resources>
