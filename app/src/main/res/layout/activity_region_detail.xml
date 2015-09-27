@@ -62,18 +62,45 @@
                 <LinearLayout
                     style="@style/Widget.CardContent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Info"
+                        android:text="NO2 and SO2"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/cheese_ipsum" />
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <org.eazegraph.lib.charts.PieChart
+                        android:id="@+id/piechart1"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:padding="10dp"
+                        app:egLegendTextSize="20sp"
+                        app:egUsePieRotation="true"
+                        app:egValueTextSize="0sp"
+                        app:egAutoCenter="true"
+                        app:egOpenClockwise="false"
+                        app:egInnerValueUnit="NO2"
+                        />
+
+                    <org.eazegraph.lib.charts.PieChart
+                        android:id="@+id/piechart2"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:padding="10dp"
+                        app:egLegendTextSize="18sp"
+                        app:egUsePieRotation="true"
+                        app:egValueTextSize="0sp"
+                        app:egAutoCenter="true"
+                        app:egOpenClockwise="false"
+                        app:egInnerValueUnit=""/>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -94,13 +121,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Friends"
+                        android:text="SO2"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/cheese_ipsum" />
 
                 </LinearLayout>
 
@@ -121,13 +144,54 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Related"
+                        android:text="CO"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <org.eazegraph.lib.charts.PieChart
+                        android:id="@+id/piechart3"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:padding="10dp"
+                        app:egLegendTextSize="18sp"
+                        app:egUsePieRotation="true"
+                        app:egValueTextSize="26sp"
+                        app:egAutoCenter="true"
+                        app:egOpenClockwise="false"
+                        app:egInnerValueUnit="%"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/card_margin"
+                android:layout_marginLeft="@dimen/card_margin"
+                android:layout_marginRight="@dimen/card_margin">
+
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/cheese_ipsum" />
+                        android:text="O3"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <org.eazegraph.lib.charts.PieChart
+                        android:id="@+id/piechart4"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:padding="10dp"
+                        app:egLegendTextSize="18sp"
+                        app:egUsePieRotation="true"
+                        app:egValueTextSize="26sp"
+                        app:egAutoCenter="true"
+                        app:egOpenClockwise="false"
+                        app:egInnerValueUnit="%"/>
 
                 </LinearLayout>
 
