@@ -17,11 +17,19 @@ import org.eazegraph.lib.models.PieModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RegionDetailActivity extends AppCompatActivity {
 
     private PieChart NO2, SO2, CO, O3;
     String station;
+
+
+
+    public  static  int PERMCO = 4;
+    public  static  int PERMNO = 12;
+    public  static  int PERMOZONE = 180;
+    public  static  int PERMNO2 = 120;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,59 +150,37 @@ public class RegionDetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    private void loadCO(String state) {
-
-        ParseQuery query = ParseQuery.getQuery("airq");
-        query.whereEqualTo("Station", station);
-        query.whereEqualTo("Parameter", "Carbon Monoxide(CO)");
-
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(final List<ParseObject> objects, com.parse.ParseException e) {
-                if (e==null) {
-                    List<ParseObject> sortedList = new ArrayList<ParseObject>();
-                } else {
-                    e.printStackTrace();
-                }
-            }
-        });
+    public int NO() {
+        Random r = new Random();
+        int Low = 357;
+        int High = 450;
+        int R = r.nextInt(High - Low) + Low;
+        return R;
     }
 
-    public void loadOzone(String state) {
-
-        ParseQuery query = ParseQuery.getQuery("airq");
-        query.whereEqualTo("Station", station);
-        query.whereEqualTo("Parameter", "Carbon Monoxide(CO)");
-
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(final List<ParseObject> objects, com.parse.ParseException e) {
-                if (e==null) {
-                    List<ParseObject> sortedList = new ArrayList<ParseObject>();
-                } else {
-                    e.printStackTrace();
-                }
-            }
-        });
+    public int CO() {
+        Random r = new Random();
+        int Low = 1;
+        int High = 8;
+        int R = r.nextInt(High - Low) + Low;
+        return R;
     }
 
-    public void loadNO2(String state) {
-
-        ParseQuery query = ParseQuery.getQuery("airq");
-        query.whereEqualTo("Station", station);
-        query.whereEqualTo("Parameter", "Carbon Monoxide(CO)");
-
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(final List<ParseObject> objects, com.parse.ParseException e) {
-                if (e==null) {
-                    List<ParseObject> sortedList = new ArrayList<ParseObject>();
-                } else {
-                    e.printStackTrace();
-                }
-            }
-        });
+    public int Ozone() {
+        Random r = new Random();
+        int Low = 12;
+        int High = 250;
+        int R = r.nextInt(High - Low) + Low;
+        return R;
     }
+
+    public int N02() {
+        Random r = new Random();
+        int Low = 12;
+        int High = 200;
+        int R = r.nextInt(High - Low) + Low;
+        return R;
+    }
+
 
 }
