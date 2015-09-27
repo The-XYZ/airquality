@@ -12,9 +12,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
+    HomeFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +31,10 @@ public class MainActivity extends AppCompatActivity {
             setupDrawerContent(navigationView);
         }
 
+        fragment = new HomeFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         final android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, new HomeFragment());
+                .replace(R.id.fragment_container, fragment);
         transaction.commit();
 
     }
@@ -90,5 +94,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }, 350);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (fragment.panelLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            fragment.panelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            fragment.stationsAdapter.clearComparison();
+        } else
+        super.onBackPressed();
     }
 }

@@ -1,5 +1,6 @@
 package xyz.airquality;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -7,12 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,6 +31,7 @@ import com.google.maps.android.ui.IconGenerator;
 import com.parse.FindCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,16 +44,30 @@ public class HomeFragment extends Fragment {
     private GoogleMap mMap;
     private RecyclerView mRecyclerView;
     Spinner spinner;
-    StationsAdapter stationsAdapter;
+    public StationsAdapter stationsAdapter;
+    View comparisonView;
+    public SlidingUpPanelLayout panelLayout;
+    TextView title1, title2;
+    ImageView itemImage1, itemImage2;
+    TextView compare;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(
                 R.layout.fragment_home, container, false);
 
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
+        comparisonView = rootView.findViewById(R.id.comparsion);
+        title1 = (TextView) rootView.findViewById(R.id.title1);
+        title2 = (TextView) rootView.findViewById(R.id.title2);
+        itemImage1 = (ImageView) rootView.findViewById(R.id.item_image1);
+        itemImage2 = (ImageView) rootView.findViewById(R.id.item_image2);
+        compare =(TextView) rootView.findViewById(R.id.compare);
+
+        panelLayout = (SlidingUpPanelLayout) rootView.findViewById(R.id.sliding_layout);
+        panelLayout.setOverlayed(true);
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.menu);
         ab.setDisplayHomeAsUpEnabled(true);
@@ -100,8 +119,18 @@ public class HomeFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         mRecyclerView.setHasFixedSize(true);
 
-        stationsAdapter = new StationsAdapter(getActivity(), new ArrayList<ParseObject>());
+        stationsAdapter = new StationsAdapter(getActivity(), new ArrayList<ParseObject>(),HomeFragment.this);
         mRecyclerView.setAdapter(stationsAdapter);
+
+        compare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ComparisonActivity.class);
+                intent.putExtra("station1",title1.getText());
+                intent.putExtra("station2",title2.getText());
+                startActivity(intent);
+            }
+        });
 
         return rootView;
 
@@ -193,5 +222,35 @@ public class HomeFragment extends Fragment {
         CameraUpdate cameraPosition = CameraUpdateFactory.newLatLngZoom(position, ratio);
         mMap.animateCamera(cameraPosition);
 
+    }
+
+    public void showComparsionView() {
+        slideComparsionSelect();
+    }
+
+    public void addItem1ToCoparison(ParseObject object1) {
+        title1.setText(object1.getString("Station"));
+        Log.d("lol",object1.getString("Station"));
+        itemImage1.setImageResource(stationsAdapter.getDrawableForPollutionLevel(object1.getNumber("Remark").intValue()));
+    }
+
+    public void addItem2ToCoparison(ParseObject object2) {
+        title2.setText(object2.getString("Station"));
+        Log.d("lol",object2.getString("Station"));
+        itemImage2.setImageResource(stationsAdapter.getDrawableForPollutionLevel(object2.getNumber("Remark").intValue()));
+    }
+
+
+    public void hideComparisaonView() {
+        hideComparsionSelect();
+    }
+
+
+    private void slideComparsionSelect() {
+       panelLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+    }
+
+    private void hideComparsionSelect() {
+      panelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
     }
 }
