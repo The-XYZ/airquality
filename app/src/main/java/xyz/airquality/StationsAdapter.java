@@ -59,15 +59,6 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
         viewHolder.title2.setText(getTextForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
         viewHolder.itemImage.setImageResource(getDrawableForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
         viewHolder.indicator.setBackgroundColor(getColorForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
-        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, RegionDetailActivity.class);
-                intent.putExtra("Station", viewHolder.title1.getText().toString());
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
-        });
 
 
         if (firstSelectedPosition!=-1) {
@@ -124,6 +115,10 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
 
                     } else {
                         //do intent stuff
+                        Intent intent = new Intent(context, RegionDetailActivity.class);
+                        intent.putExtra("Station", title1.getText().toString());
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
                     }
                 }
             });
