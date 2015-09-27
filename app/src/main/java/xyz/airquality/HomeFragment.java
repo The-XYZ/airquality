@@ -10,6 +10,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,6 +21,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by naman on 27/09/15.
  */
@@ -25,6 +31,7 @@ public class HomeFragment extends Fragment {
 
     private GoogleMap mMap;
     private RecyclerView mRecyclerView;
+    Spinner spinner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +44,32 @@ public class HomeFragment extends Fragment {
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.menu);
         ab.setDisplayHomeAsUpEnabled(true);
+
+        spinner=(Spinner)rootView.findViewById(R.id.spinner_nav);
+        spinner.setVisibility(View.VISIBLE);
+        final List<String> list = new ArrayList<String>();
+        list.add("ARUNACHAL PRADESH");
+        list.add("PUDUCHERRY");
+        list.add("JHARKHAND");list.add("HARYANA");list.add("MANIPUR");list.add("GOA");list.add("MEGHALAYA");
+        list.add("CHHATTISGARH");list.add("LAKSHADWEEP");list.add("KERALA");list.add("TAMIL NADU");
+        list.add("RAJASTHAN");list.add("DELHI");list.add("UTTAR PRADESH");list.add("NAGALAND");list.add("MAHARASHTRA");
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         mRecyclerView=(RecyclerView) rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false));
@@ -58,7 +91,6 @@ public class HomeFragment extends Fragment {
         String lati=latlong.substring(0,latlong.indexOf(",")),longi=latlong.substring(latlong.indexOf(",")+1,latlong.length());
 
         markerOptions = new MarkerOptions();
-
 
         position = new LatLng(Double.parseDouble(lati), Double.parseDouble(longi));
         markerOptions.position(position);

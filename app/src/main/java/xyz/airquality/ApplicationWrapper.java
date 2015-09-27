@@ -8,7 +8,7 @@ import com.parse.ParseInstallation;
 /**
  * Created by laavanye on 27/9/15.
  */
-public class ApplicationWrapper extends Application{
+public class ApplicationWrapper extends Application {
 
     @Override
     public void onCreate() {
