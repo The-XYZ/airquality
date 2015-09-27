@@ -13,6 +13,11 @@
 
             android:title="Directions" />
 
+        <item
+            android:id="@+id/nav_improve"
+
+            android:title="Improve Air Quality" />
+
     </group>
 
     <item android:title="More">

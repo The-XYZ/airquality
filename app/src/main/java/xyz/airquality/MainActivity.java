@@ -84,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_directions:
                 fragment = new DirectionsFragment();
                 break;
+            case R.id.nav_improve:
+                fragment = new ImproveQualityFragment();
+                break;
         }
 
         if (fragment != null) {
