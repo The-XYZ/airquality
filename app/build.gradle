@@ -53,4 +53,5 @@ dependencies {
     compile 'com.github.jd-alexander:library:1.0.5'
 //    compile 'com.android.support:multidex:1.0.0'
     compile 'com.sothree.slidinguppanel:library:3.1.1'
+    compile 'com.flaviofaria:kenburnsview:1.0.6'
 }

@@ -7,21 +7,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.flaviofaria.kenburnsview.KenBurnsView;
+
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;
 
-import org.eazegraph.lib.charts.PieChart;
-import org.eazegraph.lib.communication.IOnItemFocusChangedListener;
-import org.eazegraph.lib.models.PieModel;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class RegionDetailActivity extends AppCompatActivity {
 
     String station;
     BarChart NO2, SO2, CO, O3;
+
+    KenBurnsView kenBurnsView;
 
 
 
@@ -43,6 +41,8 @@ public class RegionDetailActivity extends AppCompatActivity {
         CO = (BarChart) findViewById(R.id.barchartCO);
         O3 = (BarChart) findViewById(R.id.barchartO3);
 
+        kenBurnsView = (KenBurnsView) findViewById(R.id.kenburns);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(station);
@@ -50,6 +50,11 @@ public class RegionDetailActivity extends AppCompatActivity {
 
 
         loadData();
+
+        switch (station) {
+            case "DCE":
+                kenBurnsView.setImageResource(R.drawable.image_dce);
+        }
 
 
     }
