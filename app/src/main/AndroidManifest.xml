@@ -105,18 +105,23 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="xyz.airquality.MainActivity" />
         </activity>
-
         <activity
             android:name=".Crops"
-            android:label="@string/title_activity_comparison">
-
+            android:label="@string/title_activity_comparison" >
         </activity>
-
-
+        <activity
+            android:name=".Effects"
+            android:label="@string/title_activity_effects"
+            android:parentActivityName=".RegionDetailActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="xyz.airquality.RegionDetailActivity" />
+        </activity>
     </application>
 
 </manifest>

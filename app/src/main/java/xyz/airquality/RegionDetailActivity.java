@@ -3,9 +3,13 @@ package xyz.airquality;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.flaviofaria.kenburnsview.KenBurnsView;
 
 import com.flaviofaria.kenburnsview.KenBurnsView;
 
@@ -18,9 +22,9 @@ public class RegionDetailActivity extends AppCompatActivity {
 
     String station;
     BarChart NO2, SO2, CO, O3;
+    AppCompatButton cropButton, effectButton;
 
     KenBurnsView kenBurnsView;
-
 
 
     public  static  int PERMCO = 4;
@@ -32,6 +36,23 @@ public class RegionDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_region_detail);
+
+        cropButton = (AppCompatButton) findViewById(R.id.crop);
+        effectButton = (AppCompatButton) findViewById(R.id.Effects);
+        cropButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i  = new Intent(RegionDetailActivity.this, Crops.class);
+                startActivity(i);
+            }
+        });
+        effectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i  = new Intent(RegionDetailActivity.this, Effects.class);
+                startActivity(i);
+            }
+        });
 
         Intent intent = getIntent();
          station = intent.getStringExtra("Station");

@@ -66,6 +66,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="NO2"
+                        android:textColor="#212121"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
 
@@ -213,6 +214,42 @@
 
 
             </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/level1"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_orange"
+                android:text="Alarming level of : CO, O3"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"/>
+
+            <TextView
+                android:id="@+id/level2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alarming level of : NO2, SO2"
+                android:textColor="@color/color_orange"
+                android:layout_margin="20dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/crop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:text="Impact on crops"
+                android:textColor="#FFFFFF"
+                android:background="@color/colorPrimaryDark"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/Effects"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:text="Effects"
+                android:textColor="#FFFFFF"
+                android:background="@color/colorPrimaryDark"/>
 
         </LinearLayout>
 
