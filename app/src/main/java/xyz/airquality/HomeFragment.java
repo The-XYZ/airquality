@@ -94,14 +94,13 @@ public class HomeFragment extends Fragment {
 
     private void loadStationFromParse(String state) {
 
-        ParseQuery query = ParseQuery.getQuery("airq");
+        ParseQuery query = ParseQuery.getQuery("StateRemark");
         query.whereEqualTo("State", state);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(final List<ParseObject> objects, com.parse.ParseException e) {
                 if (e==null) {
                     List<ParseObject> sortedList = new ArrayList<ParseObject>();
-
                     stationsAdapter.updateDataset(sortedList);
                 } else {
                     e.printStackTrace();
