@@ -1,6 +1,7 @@
 package xyz.airquality;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.parse.ParseObject;
@@ -22,12 +24,20 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
 
     private Activity context;
     private List<ParseObject> parseObjects;
+    HomeFragment homeFragment;
 
     private int lastPosition = -1;
 
-    public StationsAdapter(Activity context, List<ParseObject> parseObjects) {
+    private boolean firstSelected= false;
+    private boolean secondSelected = false;
+
+    private int firstSelectedPosition = -1;
+    private int secondSelectedPosition = -1;
+
+    public StationsAdapter(Activity context, List<ParseObject> parseObjects, HomeFragment homeFragment) {
         this.context = context;
         this.parseObjects = parseObjects;
+        this.homeFragment = homeFragment;
     }
 
     @Override
@@ -41,7 +51,7 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
 
         setAnimation(viewHolder.itemView, position);
 
@@ -50,25 +60,80 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
         viewHolder.itemImage.setImageResource(getDrawableForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
         viewHolder.indicator.setBackgroundColor(getColorForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
 
+
+        if (firstSelectedPosition!=-1) {
+            if (firstSelectedPosition == position){
+                viewHolder.foreground.setVisibility(View.VISIBLE);
+                viewHolder.check.setVisibility(View.VISIBLE);
+            } else {
+                viewHolder.foreground.setVisibility(View.GONE);
+                viewHolder.check.setVisibility(View.GONE);
+            }
+        }
+
+        if (secondSelectedPosition!=-1) {
+            if (secondSelectedPosition == position){
+                viewHolder.foreground.setVisibility(View.VISIBLE);
+                viewHolder.check.setVisibility(View.VISIBLE);
+            } else {
+                viewHolder.foreground.setVisibility(View.GONE);
+                viewHolder.check.setVisibility(View.GONE);
+            }
+        } else {
+            viewHolder.foreground.setVisibility(View.GONE);
+            viewHolder.check.setVisibility(View.GONE);
+        }
+
     }
     public  class ViewHolder extends RecyclerView.ViewHolder {
 
-        View indicator;
+        View indicator, foreground;
         TextView title1, title2;
-        ImageView itemImage;
+        ImageView itemImage, check;
+        LinearLayout linearLayout;
 
-        public ViewHolder(View itemLayoutView) {
+        public ViewHolder(final View itemLayoutView) {
             super(itemLayoutView);
 
             indicator = itemLayoutView.findViewById(R.id.indicator);
             title1 = (TextView) itemLayoutView.findViewById(R.id.title1);
             title2 = (TextView) itemLayoutView.findViewById(R.id.title2);
             itemImage = (ImageView) itemLayoutView.findViewById(R.id.item_image);
+            linearLayout = (LinearLayout) itemLayoutView.findViewById(R.id.layout);
+
+            foreground= itemLayoutView.findViewById(R.id.foreground);
+            check = (ImageView) itemLayoutView.findViewById(R.id.check);
 
             itemLayoutView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (firstSelected) {
+                        secondSelected= true;
+                        homeFragment.addItem2ToCoparison(parseObjects.get(getAdapterPosition()));
+                        secondSelectedPosition = getAdapterPosition();
+                        notifyItemChanged(getAdapterPosition());
 
+                    } else {
+                        //do intent stuff
+                        Intent intent = new Intent(context, RegionDetailActivity.class);
+                        intent.putExtra("Station", title1.getText().toString());
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
+                }
+            });
+
+            itemLayoutView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    firstSelected = true;
+                    firstSelectedPosition = getAdapterPosition();
+                    homeFragment.showComparsionView();
+                    homeFragment.addItem1ToCoparison(parseObjects.get(getAdapterPosition()));
+                    notifyItemChanged(getAdapterPosition());
+
+                    return true;
                 }
             });
 
@@ -96,7 +161,7 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
     }
 
 
-    private int getDrawableForPollutionLevel(int number) {
+    public int getDrawableForPollutionLevel(int number) {
             switch (number) {
                 case 1:
                     return R.drawable.safe;
@@ -140,4 +205,13 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
                 return Color.YELLOW;
         }
     }
+
+    public void clearComparison() {
+        firstSelected= false;
+        secondSelected = false;
+        firstSelectedPosition = -1;
+        secondSelectedPosition = -1;
+        notifyDataSetChanged();
+    }
+
 }

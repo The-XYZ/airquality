@@ -19,14 +19,21 @@ import xyz.airquality.Fragments.ComparisonHourly;
 
 public class ComparisonActivity extends AppCompatActivity {
 
+    String station1,station2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comparison);
 
+        station1 = getIntent().getStringExtra("station1");
+        station2 = getIntent().getStringExtra("station2");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setSubtitle("Comparing region1 and region2");
+        getSupportActionBar().setTitle("Compare");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setSubtitle("Comparing "+station1+" and "+station2);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         if (viewPager != null) {
@@ -47,19 +54,14 @@ public class ComparisonActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_comparison, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
