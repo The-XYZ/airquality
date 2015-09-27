@@ -32,6 +32,7 @@ public class HomeFragment extends Fragment {
     private GoogleMap mMap;
     private RecyclerView mRecyclerView;
     Spinner spinner;
+    StationsAdapter stationsAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,6 +75,9 @@ public class HomeFragment extends Fragment {
         mRecyclerView=(RecyclerView) rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false));
         mRecyclerView.setHasFixedSize(true);
+
+        stationsAdapter = new StationsAdapter(getActivity());
+        mRecyclerView.setAdapter(stationsAdapter);
 
         addToMap("78.98,78.98","title");
 
