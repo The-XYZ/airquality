@@ -29,6 +29,7 @@ import com.db.chart.view.animation.Animation;
 import com.db.chart.view.animation.easing.ElasticEase;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import xyz.airquality.R;
 
@@ -38,20 +39,28 @@ import xyz.airquality.R;
  */
 public class ComparisonDaily extends Fragment {
 
+
+
+    public  static  int PERMCO = 4;
+    public  static  int PERMNO = 12;
+    public  static  int PERMOZONE = 180;
+    public  static  int PERMNO2 = 120;
+
+
     /** First chart */
     private BarChartView mChartOne;
     private ImageButton mPlayOne;
     private boolean mUpdateOne;
     private final String[] mLabelsOne= {"1 h", "2 h", "3 h", "4 h", "5 h"};
-    private final float [][] mValuesOne = {{9.5f, 7.5f, 5.5f, 4.5f, 10f}, {6.5f, 3.5f, 3.5f, 2.5f, 7.5f}};
-
+    private final float [][] mValuesOne = {{Float.parseFloat(String.valueOf(gen())+".0f"), Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}, {Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}};
 
     /** Second chart */
     private BarChartView mChartTwo;
     private ImageButton mPlayTwo;
     private boolean mUpdateTwo;
     private final String[] mLabelsTwo= {"1 h", "2 h", "3 h", "4 h", "5 h"};
-    private final float [][] mValuesTwo = {{9.5f, 7.5f, 5.5f, 4.5f, 10f}, {6.5f, 3.5f, 3.5f, 2.5f, 7.5f}};
+    private final float [][] mValuesTwo = {{Float.parseFloat(String.valueOf(gen())+".0f"), Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}, {Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}};
+
     private TextView mTextViewTwo;
 
 
@@ -60,7 +69,8 @@ public class ComparisonDaily extends Fragment {
     private ImageButton mPlayThree;
     private boolean mUpdateThree;
     private final String[] mLabelsThree= {"1 h", "2 h", "3 h", "4 h", "5 h"};
-    private final float[][] mValuesThree = {{9.5f, 7.5f, 5.5f, 4.5f, 10f}, {6.5f, 3.5f, 3.5f, 2.5f, 7.5f}};
+    private final float[][] mValuesThree = {{Float.parseFloat(String.valueOf(gen())+".0f"), Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}, {Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}};
+
 
 
 
@@ -548,5 +558,45 @@ public class ComparisonDaily extends Fragment {
                 .setEndAction(action));
     }
 
+
+    public int NO() {
+        Random r = new Random();
+        int Low = 357;
+        int High = 450;
+        int R = r.nextInt(High - Low) + Low;
+        return R;
+    }
+
+    public int CO() {
+        Random r = new Random();
+        int Low = 1;
+        int High = 8;
+        int R = r.nextInt(High - Low) + Low;
+        return R;
+    }
+
+    public int Ozone() {
+        Random r = new Random();
+        int Low = 12;
+        int High = 250;
+        int R = r.nextInt(High - Low) + Low;
+        return R;
+    }
+
+    public int N02() {
+        Random r = new Random();
+        int Low = 12;
+        int High = 200;
+        int R = r.nextInt(High - Low) + Low;
+        return R;
+    }
+
+    public int gen() {
+        Random r = new Random();
+        int Low = 1;
+        int High = 10;
+        int R = r.nextInt(High - Low) + Low;
+        return R;
+    }
 
 }

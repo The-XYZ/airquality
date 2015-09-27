@@ -10,11 +10,20 @@ import android.view.MenuItem;
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;
 
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.communication.IOnItemFocusChangedListener;
+import org.eazegraph.lib.models.PieModel;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class RegionDetailActivity extends AppCompatActivity {
 
     String station;
     BarChart NO2, SO2, CO, O3;
+
+
 
     public  static  int PERMCO = 4;
     public  static  int PERMNO = 12;
@@ -102,4 +111,45 @@ public class RegionDetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public int NO() {
+        Random r = new Random();
+        int Low = 357;
+        int High = 450;
+        int R = r.nextInt(High - Low) + Low;
+        return R;
+    }
+
+    public int CO() {
+        Random r = new Random();
+        int Low = 1;
+        int High = 8;
+        int R = r.nextInt(High - Low) + Low;
+        return R;
+    }
+
+    public int Ozone() {
+        Random r = new Random();
+        int Low = 12;
+        int High = 250;
+        int R = r.nextInt(High - Low) + Low;
+        return R;
+    }
+
+    public int N02() {
+        Random r = new Random();
+        int Low = 12;
+        int High = 200;
+        int R = r.nextInt(High - Low) + Low;
+        return R;
+    }
+
+
+    public String genColor(int a ,int b){
+        if(a>b){
+            return "#ff0000";
+        }else{
+            return "#00ff00";
+        }
+
+    }
 }
