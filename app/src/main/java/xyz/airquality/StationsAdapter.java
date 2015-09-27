@@ -45,6 +45,7 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
         setAnimation(viewHolder.itemView, position);
 
         viewHolder.title1.setText(parseObjects.get(position).getString("Station"));
+        viewHolder.title2.setText(getTextForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
 
     }
     public  class ViewHolder extends RecyclerView.ViewHolder {
@@ -82,6 +83,37 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
     public void updateDataset(List<ParseObject> parseObjects) {
         this.parseObjects = parseObjects;
         notifyDataSetChanged();
+    }
+
+
+    private int getDrawableForPollutionLevel(int number) {
+            switch (number) {
+                case 1:
+                    return R.drawable.ic_menu;
+                case 2:
+                    return R.drawable.ic_menu;
+                case 3:
+                    return R.drawable.ic_menu;
+                case 4:
+                    return R.drawable.ic_menu;
+                default:
+                    return R.drawable.ic_menu;
+            }
+    }
+
+    private String getTextForPollutionLevel(int number) {
+        switch (number) {
+            case 1:
+                return "Safe";
+            case 2:
+                return "Moderate";
+            case 3:
+                return "Unsafe";
+            case 4:
+                return "Highly unsafe";
+            default:
+                return "Moderate";
+        }
     }
 
 }

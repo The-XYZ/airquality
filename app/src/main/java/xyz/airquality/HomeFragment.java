@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ public class HomeFragment extends Fragment {
         spinner=(Spinner)rootView.findViewById(R.id.spinner_nav);
         spinner.setVisibility(View.VISIBLE);
         final List<String> list = new ArrayList<String>();
+        list.add("DELHI");
         list.add("GUJARAT");
         list.add("ARUNACHAL PRADESH");
         list.add("PUDUCHERRY");
@@ -85,8 +87,6 @@ public class HomeFragment extends Fragment {
         stationsAdapter = new StationsAdapter(getActivity(), new ArrayList<ParseObject>());
         mRecyclerView.setAdapter(stationsAdapter);
 
-        addToMap("78.98,78.98","title");
-
         return rootView;
 
 
@@ -96,12 +96,12 @@ public class HomeFragment extends Fragment {
 
         ParseQuery query = ParseQuery.getQuery("StateRemark");
         query.whereEqualTo("State", state);
+        Log.d("lol",state);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(final List<ParseObject> objects, com.parse.ParseException e) {
                 if (e==null) {
-                    List<ParseObject> sortedList = new ArrayList<ParseObject>();
-                    stationsAdapter.updateDataset(sortedList);
+                    stationsAdapter.updateDataset(objects);
                 } else {
                     e.printStackTrace();
                 }
