@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,9 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.parse.FindCallback;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +53,8 @@ public class HomeFragment extends Fragment {
         spinner=(Spinner)rootView.findViewById(R.id.spinner_nav);
         spinner.setVisibility(View.VISIBLE);
         final List<String> list = new ArrayList<String>();
+        list.add("DELHI");
+        list.add("GUJARAT");
         list.add("ARUNACHAL PRADESH");
         list.add("PUDUCHERRY");
         list.add("JHARKHAND");list.add("HARYANA");list.add("MANIPUR");list.add("GOA");list.add("MEGHALAYA");
@@ -63,7 +69,9 @@ public class HomeFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                String state = list.get(i).toLowerCase();
+                String stateToMatch = state.substring(0, 1).toUpperCase() + state.substring(1);
+                loadStationFromParse(stateToMatch);
             }
 
             @Override
@@ -76,14 +84,29 @@ public class HomeFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false));
         mRecyclerView.setHasFixedSize(true);
 
-        stationsAdapter = new StationsAdapter(getActivity());
+        stationsAdapter = new StationsAdapter(getActivity(), new ArrayList<ParseObject>());
         mRecyclerView.setAdapter(stationsAdapter);
-
-        addToMap("78.98,78.98","title");
 
         return rootView;
 
 
+    }
+
+    private void loadStationFromParse(String state) {
+
+        ParseQuery query = ParseQuery.getQuery("StateRemark");
+        query.whereEqualTo("State", state);
+        Log.d("lol",state);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(final List<ParseObject> objects, com.parse.ParseException e) {
+                if (e==null) {
+                    stationsAdapter.updateDataset(objects);
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void addToMap(String latlong,String title){

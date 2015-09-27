@@ -1,0 +1,242 @@
+[
+  {
+    "state": "Andhra Pradesh",
+    "coords": {
+      "lat": 15.9128998,
+      "lng": 79.7399875
+    },
+    "level": "26"
+  },
+  {
+    "state": "Assam",
+    "coords": {
+      "lat": 26.2006043,
+      "lng": 92.9375739
+    },
+    "level": "60"
+  },
+  {
+    "state": "Bihar",
+    "coords": {
+      "lat": 25.0960742,
+      "lng": 85.31311939999999
+    },
+    "level": "87"
+  },
+  {
+    "state": "Chandigarh",
+    "coords": {
+      "lat": 30.7333148,
+      "lng": 76.7794179
+    },
+    "level": "52"
+  },
+  {
+    "state": "Chattisgarh",
+    "coords": {
+      "lat": 21.2786567,
+      "lng": 81.8661442
+    },
+    "level": "15"
+  },
+  {
+    "state": "Dadra & Nagar Haveli",
+    "coords": {
+      "lat": 20.316667,
+      "lng": 72.966667
+    },
+    "level": "NA"
+  },
+  {
+    "state": "Daman & Diu",
+    "coords": {
+      "lat": 20.3973736,
+      "lng": 72.8327991
+    },
+    "level": "NA"
+  },
+  {
+    "state": "Delhi",
+    "coords": {
+      "lat": 28.6139391,
+      "lng": 77.2090212
+    },
+    "level": "116"
+  },
+  {
+    "state": "Goa",
+    "coords": {
+      "lat": 15.2993265,
+      "lng": 74.12399599999999
+    },
+    "level": "49"
+  },
+  {
+    "state": "Gujarat",
+    "coords": {
+      "lat": 22.258652,
+      "lng": 71.1923805
+    },
+    "level": "20"
+  },
+  {
+    "state": "Haryana",
+    "coords": {
+      "lat": 29.0587757,
+      "lng": 76.085601
+    },
+    "level": "52"
+  },
+  {
+    "state": "Himachal Pradesh",
+    "coords": {
+      "lat": 31.1048294,
+      "lng": 77.17339009999999
+    },
+    "level": "75"
+  },
+  {
+    "state": "Jammu & Kashmir",
+    "coords": {
+      "lat": 32.7266016,
+      "lng": 74.8570259
+    },
+    "level": "41"
+  },
+  {
+    "state": "Jharkhand",
+    "coords": {
+      "lat": 23.6101808,
+      "lng": 85.2799354
+    },
+    "level": "47"
+  },
+  {
+    "state": "Karnataka",
+    "coords": {
+      "lat": 15.3172775,
+      "lng": 75.7138884
+    },
+    "level": "39"
+  },
+  {
+    "state": "Kerala",
+    "coords": {
+      "lat": 10.8505159,
+      "lng": 76.2710833
+    },
+    "level": "28"
+  },
+  {
+    "state": "Madhya Pradesh",
+    "coords": {
+      "lat": 22.9734229,
+      "lng": 78.6568942
+    },
+    "level": "37"
+  },
+  {
+    "state": "Maharashtra",
+    "coords": {
+      "lat": 19.7514798,
+      "lng": 75.7138884
+    },
+    "level": "44"
+  },
+  {
+    "state": "Manipur",
+    "coords": {
+      "lat": 24.6637173,
+      "lng": 93.90626879999999
+    },
+    "level": "NA"
+  },
+  {
+    "state": "Meghalaya",
+    "coords": {
+      "lat": 25.4670308,
+      "lng": 91.366216
+    },
+    "level": "16"
+  },
+  {
+    "state": "Mizoram",
+    "coords": {
+      "lat": 23.164543,
+      "lng": 92.9375739
+    },
+    "level": "25"
+  },
+  {
+    "state": "Nagaland",
+    "coords": {
+      "lat": 26.1584354,
+      "lng": 94.5624426
+    },
+    "level": "37"
+  },
+  {
+    "state": "Orissa",
+    "coords": {
+      "lat": 20.9516658,
+      "lng": 85.0985236
+    },
+    "level": "26"
+  },
+  {
+    "state": "Punjab",
+    "coords": {
+      "lat": 31.1471305,
+      "lng": 75.34121789999999
+    },
+    "level": "46"
+  },
+  {
+    "state": "Puducherry",
+    "coords": {
+      "lat": 11.9138598,
+      "lng": 79.8144722
+    },
+    "level": "9"
+  },
+  {
+    "state": "Rajasthan",
+    "coords": {
+      "lat": 27.0238036,
+      "lng": 74.21793260000001
+    },
+    "level": "82"
+  },
+  {
+    "state": "Sikkim",
+    "coords": {
+      "lat": 27.5329718,
+      "lng": 88.5122178
+    },
+    "level": "NA"
+  },
+  {
+    "state": "Tamilnadu",
+    "coords": {
+      "lat": 11.1271225,
+      "lng": 78.6568942
+    },
+    "level": "27"
+  },
+  {
+    "state": "Uttar Pradesh",
+    "coords": {
+      "lat": 27.5705886,
+      "lng": 80.0981869
+    },
+    "level": "55"
+  },
+  {
+    "state": "Uttarakhand",
+    "coords": {
+      "lat": 30.066753,
+      "lng": 79.01929969999999
+    },
+    "level": "76"
+  }
+]
