@@ -20,5 +20,16 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="AppTheme.FullScreen" parent="AppTheme">
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="AppTheme.FullScreen" parent="AppTheme">
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
 
 </resources>

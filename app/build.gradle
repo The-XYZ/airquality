@@ -11,7 +11,23 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('airquality_debug.jks')
+            storePassword "airquality"
+            keyAlias "cert"
+            keyPassword "airquality"
+        }
+    }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -28,4 +44,6 @@ dependencies {
     compile 'com.android.support:design:23.0.0'
     compile 'com.parse:parse-android:1.10.1'
     compile 'com.parse.bolts:bolts-android:1.2.1'
+    compile "com.google.android.gms:play-services:6.5.+"
+//    compile 'com.android.support:multidex:1.0.0'
 }
