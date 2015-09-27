@@ -2,32 +2,46 @@
 <items version="2" >
 
     <item
-        jar="/Users/naman/Github/airquality/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/classes.jar"
+        jar="/Users/naman/Github/airquality/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.0"
-        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
-        <dex dex="/Users/naman/Github/airquality/app/build/intermediates/pre-dexed/debug/classes-33b2b3e85b1556d2f44863b7d8a7d114ea1c316e.jar" />
+        sha1="40e7757d9b06db670062ddb3cf5b30c129b2fd8c">
+        <dex dex="/Users/naman/Github/airquality/app/build/intermediates/pre-dexed/debug/classes-be333f394ad9aee8f52e507a93529d8b091e5cec.jar" />
     </item>
     <item
-        jar="/Users/naman/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
+        jar="/Users/naman/Github/airquality/app/build/intermediates/exploded-aar/com.android.support/design/23.0.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.0"
-        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
-        <dex dex="/Users/naman/Github/airquality/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.0-1735a97dc2a80ae3632288ec4899b1bd54cdc7e0.jar" />
+        sha1="8a5238e4bdcd6568b82db669d41817de670586b8">
+        <dex dex="/Users/naman/Github/airquality/app/build/intermediates/pre-dexed/debug/classes-bc8e6e7b4c7ba295b5e75d5c952934b641621b7a.jar" />
     </item>
     <item
-        jar="/Users/naman/Github/airquality/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/jars/classes.jar"
+        jar="/Users/naman/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.2.1/44780c2cf98f6a3cf4e77f1234d644758b329201/bolts-android-1.2.1.jar"
         jumboMode="false"
         revision="23.0.0"
-        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
-        <dex dex="/Users/naman/Github/airquality/app/build/intermediates/pre-dexed/debug/classes-ea8cfd07bafdf4ecb93342d7bf7ef5ced6193dd4.jar" />
+        sha1="44780c2cf98f6a3cf4e77f1234d644758b329201">
+        <dex dex="/Users/naman/Github/airquality/app/build/intermediates/pre-dexed/debug/bolts-android-1.2.1-bab8a9b69d1e409a99d4b5ac3a2ff9085f5281de.jar" />
     </item>
     <item
-        jar="/Users/naman/Github/airquality/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jar="/Users/naman/Github/airquality/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.0.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.0"
-        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
-        <dex dex="/Users/naman/Github/airquality/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.0-8bff1970237aed42934a6e351c42474cc0c7b894.jar" />
+        sha1="1ccbc26be2c465c622a48310e8092241b01abe80">
+        <dex dex="/Users/naman/Github/airquality/app/build/intermediates/pre-dexed/debug/classes-74b4a554b90470390c65553b5244e02b573b39b5.jar" />
+    </item>
+    <item
+        jar="/Users/naman/.gradle/caches/modules-2/files-2.1/com.parse/parse-android/1.10.1/a87cb993a12e574a216213d0b8b2b78f6da35d37/parse-android-1.10.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="a87cb993a12e574a216213d0b8b2b78f6da35d37">
+        <dex dex="/Users/naman/Github/airquality/app/build/intermediates/pre-dexed/debug/parse-android-1.10.1-4979b2da52e80bb1aefbcc88eac9cd61a53cf157.jar" />
+    </item>
+    <item
+        jar="/Users/naman/Github/airquality/app/build/intermediates/exploded-aar/com.android.support/palette-v7/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="15b669fd484d82539a354ccd1f2a08737474e95e">
+        <dex dex="/Users/naman/Github/airquality/app/build/intermediates/pre-dexed/debug/classes-6ba492e9afc0b9ae1bb3398e5ecdc822b765e15c.jar" />
     </item>
 
 </items>

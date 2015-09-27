@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+
+            android:title="Home" />
+
+    </group>
+
+    <item android:title="More">
+        <menu>
+            <item android:title="Some more item" />
+
+        </menu>
+    </item>
+
+</menu>
