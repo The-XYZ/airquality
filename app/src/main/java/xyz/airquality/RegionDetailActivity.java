@@ -54,6 +54,12 @@ public class RegionDetailActivity extends AppCompatActivity {
         switch (station) {
             case "DCE":
                 kenBurnsView.setImageResource(R.drawable.image_dce);
+                break;
+            case "NSIT Dwarka":
+                kenBurnsView.setImageResource(R.drawable.image_nsit);
+                break;
+            case "Mandir Marg":
+                kenBurnsView.setImageResource(R.drawable.image_mandir_marg);
         }
 
 
