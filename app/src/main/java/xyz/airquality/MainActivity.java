@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
+            case R.id.settings:{
+                Intent i = new Intent(MainActivity.this, ComparisonActivity.class);
+                startActivity(i);
+            }
                 return true;
         }
         return super.onOptionsItemSelected(item);
