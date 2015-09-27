@@ -109,6 +109,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="xyz.airquality.MainActivity" />
         </activity>
+
+        <activity
+            android:name=".Crops"
+            android:label="@string/title_activity_comparison">
+
+        </activity>
+
+
     </application>
 
 </manifest>
