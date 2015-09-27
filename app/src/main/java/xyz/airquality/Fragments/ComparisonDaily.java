@@ -47,19 +47,19 @@ public class ComparisonDaily extends Fragment {
     public  static  int PERMNO2 = 120;
 
 
-    /** First chart */
     private BarChartView mChartOne;
     private ImageButton mPlayOne;
     private boolean mUpdateOne;
     private final String[] mLabelsOne= {"1 h", "2 h", "3 h", "4 h", "5 h"};
     private final float [][] mValuesOne = {{Float.parseFloat(String.valueOf(gen())+".0f"), Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}, {Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}};
 
+
     /** Second chart */
     private BarChartView mChartTwo;
     private ImageButton mPlayTwo;
     private boolean mUpdateTwo;
     private final String[] mLabelsTwo= {"1 h", "2 h", "3 h", "4 h", "5 h"};
-    private final float [][] mValuesTwo = {{Float.parseFloat(String.valueOf(gen())+".0f"), Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}, {Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}};
+    private final float [][] mValuesTwo =  {{Float.parseFloat(String.valueOf(gen())+".0f"), Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}, {Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}};
 
     private TextView mTextViewTwo;
 
@@ -69,7 +69,10 @@ public class ComparisonDaily extends Fragment {
     private ImageButton mPlayThree;
     private boolean mUpdateThree;
     private final String[] mLabelsThree= {"1 h", "2 h", "3 h", "4 h", "5 h"};
-    private final float[][] mValuesThree = {{Float.parseFloat(String.valueOf(gen())+".0f"), Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}, {Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}};
+    private final float[][] mValuesThree =  {{Float.parseFloat(String.valueOf(gen())+".0f"), Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}, {Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f"),Float.parseFloat(String.valueOf(gen())+".0f")}};
+
+
+
 
 
 
@@ -588,8 +591,9 @@ public class ComparisonDaily extends Fragment {
         int Low = 12;
         int High = 200;
         int R = r.nextInt(High - Low) + Low;
-        return R;
+        return R*10;
     }
+
 
     public int gen() {
         Random r = new Random();
