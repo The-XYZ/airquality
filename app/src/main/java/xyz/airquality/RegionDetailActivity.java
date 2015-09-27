@@ -1,23 +1,35 @@
 package xyz.airquality;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.FindCallback;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.communication.IOnItemFocusChangedListener;
 import org.eazegraph.lib.models.PieModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RegionDetailActivity extends AppCompatActivity {
 
     private PieChart NO2, SO2, CO, O3;
+    String station;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_region_detail);
+
+        Intent intent = getIntent();
+         station = intent.getStringExtra("station");
 
         NO2 = (PieChart) findViewById(R.id.piechart1);
         SO2 = (PieChart) findViewById(R.id.piechart2);
@@ -130,5 +142,59 @@ public class RegionDetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    private void loadCO(String state) {
+
+        ParseQuery query = ParseQuery.getQuery("airq");
+        query.whereEqualTo("Station", station);
+        query.whereEqualTo("Parameter", "Carbon Monoxide(CO)");
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(final List<ParseObject> objects, com.parse.ParseException e) {
+                if (e==null) {
+                    List<ParseObject> sortedList = new ArrayList<ParseObject>();
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void loadOzone(String state) {
+
+        ParseQuery query = ParseQuery.getQuery("airq");
+        query.whereEqualTo("Station", station);
+        query.whereEqualTo("Parameter", "Carbon Monoxide(CO)");
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(final List<ParseObject> objects, com.parse.ParseException e) {
+                if (e==null) {
+                    List<ParseObject> sortedList = new ArrayList<ParseObject>();
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void loadNO2(String state) {
+
+        ParseQuery query = ParseQuery.getQuery("airq");
+        query.whereEqualTo("Station", station);
+        query.whereEqualTo("Parameter", "Carbon Monoxide(CO)");
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(final List<ParseObject> objects, com.parse.ParseException e) {
+                if (e==null) {
+                    List<ParseObject> sortedList = new ArrayList<ParseObject>();
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
 }
