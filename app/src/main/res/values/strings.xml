@@ -26,21 +26,11 @@
 
 
     <string name="info_pollutant_risks">What are the risks?</string>
-    <string name="info_pollutant_risks_CO">In case of high concentrations, carbon monoxide can cause poisoning characterized by headache, nausea and vomiting. Carbon monoxide is particularly present and dangerous indoor because of some boilers and can lead to coma and death in case of prolonged exposure.</string>
-    <string name="info_pollutant_risks_NO2">It is responsible for bronchitis and asthma especially in children and may also contribute to the decreasing of the lung function in case of high concentrations.</string>
-    <string name="info_pollutant_risks_O3">Ozone might cause asthma, eye irritation and can lead to respiratory and heart diseases.</string>
-    <string name="info_pollutant_risks_PM">Fine particles cause many nasal allergies. Chronic exposure to fine particles is a risk factor for cardiovascular and respiratory diseases and lung cancer.</string>
-    <string name="info_pollutant_risks_SO2">SO₂ can irritate the skin and the respiratory tract. At high concentration it can even cause respiratory diseases and modify the lung defense mechanism.</string>
-    <string name="info_pollutant_risks_VOC">They can cause irritations and a decrease of the breathing capacity in case of high concentration. Some VOCs are classified as carcinogenic.</string>
-
-
-
-    <string name="info_pollutant_risks">What are the risks?</string>
-    <string name="info_pollutant_risks_CO">In case of high concentrations, carbon monoxide can cause poisoning characterized by headache, nausea and vomiting. Carbon monoxide is particularly present and dangerous indoor because of some boilers and can lead to coma and death in case of prolonged exposure.</string>
-    <string name="info_pollutant_risks_NO2">It is responsible for bronchitis and asthma especially in children and may also contribute to the decreasing of the lung function in case of high concentrations.</string>
-    <string name="info_pollutant_risks_O3">Ozone might cause asthma, eye irritation and can lead to respiratory and heart diseases.</string>
-    <string name="info_pollutant_risks_PM">Fine particles cause many nasal allergies. Chronic exposure to fine particles is a risk factor for cardiovascular and respiratory diseases and lung cancer.</string>
-    <string name="info_pollutant_risks_SO2">SO₂ can irritate the skin and the respiratory tract. At high concentration it can even cause respiratory diseases and modify the lung defense mechanism.</string>
+    <string name="info_pollutant_risks_CO"><b>Bad Effect of CO</b> In case of high concentrations, carbon monoxide can cause poisoning characterized by headache, nausea and vomiting. Carbon monoxide is particularly present and dangerous indoor because of some boilers and can lead to coma and death in case of prolonged exposure.</string>
+    <string name="info_pollutant_risks_NO2"><b>Bad Effect of NO₂</b> It is responsible for bronchitis and asthma especially in children and may also contribute to the decreasing of the lung function in case of high concentrations.</string>
+    <string name="info_pollutant_risks_O3"><b>Bad Effect of O3</b> Ozone might cause asthma, eye irritation and can lead to respiratory and heart diseases.</string>
+    <string name="info_pollutant_risks_PM"><b>Bad Effect of PM</b> Fine particles cause many nasal allergies. Chronic exposure to fine particles is a risk factor for cardiovascular and respiratory diseases and lung cancer.</string>
+    <string name="info_pollutant_risks_SO2"><b>Bad Effect of SO₂</b> SO₂ can irritate the skin and the respiratory tract. At high concentration it can even cause respiratory diseases and modify the lung defense mechanism.</string>
     <string name="info_pollutant_risks_VOC">They can cause irritations and a decrease of the breathing capacity in case of high concentration. Some VOCs are classified as carcinogenic.</string>
 
 

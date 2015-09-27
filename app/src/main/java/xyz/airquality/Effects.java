@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class Effects extends AppCompatActivity {
+
+    TextView effects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +20,9 @@ public class Effects extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Effects");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        effects  = (TextView) findViewById(R.id.effectDetail);
+        effects.setText(getResources().getString(R.string.info_pollutant_risks_CO)+"\n\n\n"+getResources().getString(R.string.info_pollutant_risks_NO2)+"\n\n\n"+getResources().getString(R.string.info_pollutant_risks_O3));
 
     }
 

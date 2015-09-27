@@ -22,10 +22,6 @@ public class RegionDetailActivity extends AppCompatActivity {
 
     String station;
     BarChart NO2, SO2, CO, O3;
-
-    KenBurnsView kenBurnsView;
-
-
     AppCompatButton cropButton, effectButton;
 
     KenBurnsView kenBurnsView;
