@@ -1,6 +1,7 @@
 package xyz.airquality;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,7 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
         viewHolder.title1.setText(parseObjects.get(position).getString("Station"));
         viewHolder.title2.setText(getTextForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
         viewHolder.itemImage.setImageResource(getDrawableForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
+        viewHolder.indicator.setBackgroundColor(getColorForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
 
     }
     public  class ViewHolder extends RecyclerView.ViewHolder {
@@ -62,6 +64,13 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
             title1 = (TextView) itemLayoutView.findViewById(R.id.title1);
             title2 = (TextView) itemLayoutView.findViewById(R.id.title2);
             itemImage = (ImageView) itemLayoutView.findViewById(R.id.item_image);
+
+            itemLayoutView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
 
         }
     }
@@ -120,15 +129,15 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
     private int getColorForPollutionLevel(int number) {
         switch (number) {
             case 1:
-                return R.drawable.safe;
+                return Color.GREEN;
             case 2:
-                return R.drawable.moderate;
+                return Color.parseColor("#FFA500");
             case 3:
-                return R.drawable.unsafe;
+                return Color.MAGENTA;
             case 4:
-                return R.drawable.highunsafe;
+                return Color.RED;
             default:
-                return R.drawable.moderate;
+                return Color.YELLOW;
         }
     }
 }
