@@ -1,6 +1,7 @@
 package xyz.airquality;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.parse.ParseObject;
@@ -41,7 +43,7 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
 
         setAnimation(viewHolder.itemView, position);
 
@@ -49,6 +51,15 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
         viewHolder.title2.setText(getTextForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
         viewHolder.itemImage.setImageResource(getDrawableForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
         viewHolder.indicator.setBackgroundColor(getColorForPollutionLevel(parseObjects.get(position).getNumber("Remark").intValue()));
+        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, RegionDetailActivity.class);
+                intent.putExtra("Station", viewHolder.title1.getText().toString());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
 
     }
     public  class ViewHolder extends RecyclerView.ViewHolder {
@@ -56,14 +67,16 @@ public class StationsAdapter extends RecyclerView.Adapter<StationsAdapter.ViewHo
         View indicator;
         TextView title1, title2;
         ImageView itemImage;
+        LinearLayout linearLayout;
 
-        public ViewHolder(View itemLayoutView) {
+        public ViewHolder(final View itemLayoutView) {
             super(itemLayoutView);
 
             indicator = itemLayoutView.findViewById(R.id.indicator);
             title1 = (TextView) itemLayoutView.findViewById(R.id.title1);
             title2 = (TextView) itemLayoutView.findViewById(R.id.title2);
             itemImage = (ImageView) itemLayoutView.findViewById(R.id.item_image);
+            linearLayout = (LinearLayout) itemLayoutView.findViewById(R.id.layout);
 
             itemLayoutView.setOnClickListener(new View.OnClickListener() {
                 @Override

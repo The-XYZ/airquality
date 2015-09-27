@@ -4,7 +4,8 @@
     android:layout_height="255dp"
     android:background="@android:color/transparent"
     android:foreground="?selectableItemBackgroundBorderless"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/layout">
 
     <View
         android:id="@+id/indicator"

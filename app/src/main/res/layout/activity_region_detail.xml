@@ -11,33 +11,33 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/detail_backdrop_height"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
-            app:expandedTitleMarginEnd="64dp">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/backdrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_collapseMode="pin" />
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -62,45 +62,33 @@
                 <LinearLayout
                     style="@style/Widget.CardContent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="NO2 and SO2"
+                        android:text="NO2"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <org.eazegraph.lib.charts.PieChart
-                        android:id="@+id/piechart1"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:padding="10dp"
-                        app:egLegendTextSize="20sp"
-                        app:egUsePieRotation="true"
-                        app:egValueTextSize="0sp"
-                        app:egAutoCenter="true"
-                        app:egOpenClockwise="false"
-                        app:egInnerValueUnit="NO2"
-                        />
 
-                    <org.eazegraph.lib.charts.PieChart
-                        android:id="@+id/piechart2"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:padding="10dp"
-                        app:egLegendTextSize="18sp"
-                        app:egUsePieRotation="true"
-                        app:egValueTextSize="0sp"
-                        app:egAutoCenter="true"
-                        app:egOpenClockwise="false"
-                        app:egInnerValueUnit=""/>
-                    </LinearLayout>
+                        <org.eazegraph.lib.charts.BarChart
+                            android:id="@+id/barchartNO2"
+                            android:layout_width="match_parent"
+                            android:layout_height="256dp"
+                            android:padding="10dp"
+                            app:egBarWidth="20dp"
+                            app:egFixedBarWidth="true"
+                            app:egLegendHeight="0dp"
+                            app:egShowDecimal="true"
+                            app:egShowValues="true" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="concentration VS days"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                            android:textColor="#212121" />
+
 
                 </LinearLayout>
 
@@ -124,8 +112,26 @@
                         android:text="SO2"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
+                    <org.eazegraph.lib.charts.BarChart
+                        android:id="@+id/barchartSO2"
+                        android:layout_width="match_parent"
+                        android:layout_height="256dp"
+                        android:padding="10dp"
+                        app:egBarWidth="20dp"
+                        app:egFixedBarWidth="true"
+                        app:egLegendHeight="0dp"
+                        app:egShowDecimal="true"
+                        app:egShowValues="true" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="concentration VS days"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                        android:textColor="#212121" />
 
                 </LinearLayout>
+
 
             </android.support.v7.widget.CardView>
 
@@ -147,19 +153,26 @@
                         android:text="CO"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                    <org.eazegraph.lib.charts.PieChart
-                        android:id="@+id/piechart3"
+                    <org.eazegraph.lib.charts.BarChart
+                        android:id="@+id/barchartCO"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="256dp"
                         android:padding="10dp"
-                        app:egLegendTextSize="18sp"
-                        app:egUsePieRotation="true"
-                        app:egValueTextSize="26sp"
-                        app:egAutoCenter="true"
-                        app:egOpenClockwise="false"
-                        app:egInnerValueUnit="%"/>
+                        app:egBarWidth="20dp"
+                        app:egFixedBarWidth="true"
+                        app:egLegendHeight="0dp"
+                        app:egShowDecimal="true"
+                        app:egShowValues="true" />
 
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="concentration VS days"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                        android:textColor="#212121" />
                 </LinearLayout>
+
 
             </android.support.v7.widget.CardView>
 
@@ -181,19 +194,25 @@
                         android:text="O3"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                    <org.eazegraph.lib.charts.PieChart
-                        android:id="@+id/piechart4"
+                    <org.eazegraph.lib.charts.BarChart
+                        android:id="@+id/barchartO3"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="256dp"
                         android:padding="10dp"
-                        app:egLegendTextSize="18sp"
-                        app:egUsePieRotation="true"
-                        app:egValueTextSize="26sp"
-                        app:egAutoCenter="true"
-                        app:egOpenClockwise="false"
-                        app:egInnerValueUnit="%"/>
+                        app:egBarWidth="20dp"
+                        app:egFixedBarWidth="true"
+                        app:egLegendHeight="0dp"
+                        app:egShowDecimal="true"
+                        app:egShowValues="true" />
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="concentration VS days"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+                        android:textColor="#212121" />
                 </LinearLayout>
+
 
             </android.support.v7.widget.CardView>
 

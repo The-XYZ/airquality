@@ -1,0 +1,81 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin" >
+
+    <TextView android:text="Effects of Pollution on Crops" android:layout_width="wrap_content"
+
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center|center_horizontal"
+
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ozone"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Oxides of nitrogen, carbon monoxide and volatile organic compounds (VOCs) emitted by fossil-fuel combustion can trigger reactions that lead to the formation of toxic ozone in the atmosphere. Ozone enters plants through pores in the undersides of leaves. In many species, symptoms usually appear between veins on the upper surface of middle-aged or older leaves. These symptoms can include chlorosis --- a loss of color in the leaf --- mottling, bronzing, reddening and stunted growth; often, injured leaves eventually wither and fall. Sensitivity varies between different species and even between different varieties of the same species ."
+        />
+
+        <!--<HorizontalScrollView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="100dp">-->
+            <!-- -->
+            <!--<ImageView-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:src="@drawable/"-->
+                <!--/>-->
+            <!-- -->
+        <!--</HorizontalScrollView>-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CO"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Production of certain chemicals, coal-burning operations, and brick, ceramics, glass and tile manufacture release into the air compounds containing fluorine . They typically cause yellow mottling or tan-colored scorching on the edges of leaves or the ends of leaves and needles on grasses and conifers. Often the youngest leaves and growth of the plant are the most easily injured parts.  As with ozone, susceptibility varies not only between different species but between different varieties of a species as well; apricot, young barley, peach, grape, sweet corn and plum are among the more sensitive plants."
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="N2O"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Coal-fired power plants, copper and iron smelters, oil refineries and various other industrial operations can release sulfur dioxide, which enters leaves primarily through their pores, just like ozone . The resulting damage appears as dead and dying tissue --- light tan, whitish, orange-brown or red in color --- near the veins, and sometimes along the edges of, leaves. Plants vary widely in terms of their susceptibility; asparagus, cabbage, celery, corn, onion and potato are resistant, but many other plants like barley, rhubarb, tobacco and clover are much more susceptible." />
+
+</LinearLayout>
+    </ScrollView>
