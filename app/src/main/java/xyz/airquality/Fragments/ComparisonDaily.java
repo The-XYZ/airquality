@@ -51,7 +51,7 @@ public class ComparisonDaily extends Fragment {
     private ImageButton mPlayTwo;
     private boolean mUpdateTwo;
     private final String[] mLabelsTwo= {"1 h", "2 h", "3 h", "4 h", "5 h"};
-    private final float [] mValuesTwo = {23f, 34f, 55f, 71f, 98f};
+    private final float [][] mValuesTwo = {{9.5f, 7.5f, 5.5f, 4.5f, 10f}, {6.5f, 3.5f, 3.5f, 2.5f, 7.5f}};
     private TextView mTextViewTwo;
 
 
@@ -60,7 +60,7 @@ public class ComparisonDaily extends Fragment {
     private ImageButton mPlayThree;
     private boolean mUpdateThree;
     private final String[] mLabelsThree= {"1 h", "2 h", "3 h", "4 h", "5 h"};
-    private final float[] mValuesThree = {2.5f, 3.7f, 4f, 8f, 4.5f};
+    private final float[][] mValuesThree = {{9.5f, 7.5f, 5.5f, 4.5f, 10f}, {6.5f, 3.5f, 3.5f, 2.5f, 7.5f}};
 
 
 
@@ -375,79 +375,62 @@ public class ComparisonDaily extends Fragment {
      */
 
     public void produceTwo(ChartView chart, Runnable action){
-        BarChartView horChart = (BarChartView) chart;
+        BarChartView barChart = (BarChartView) chart;
 
-        Tooltip tip = new Tooltip(getActivity(), R.layout.barchart_one_tooltip);
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            tip.setEnterAnimation(PropertyValuesHolder.ofFloat(View.ALPHA, 1));
-            tip.setExitAnimation(PropertyValuesHolder.ofFloat(View.ALPHA,0));
-        }
-
-        horChart.setTooltips(tip);
-
-
-        horChart.setOnEntryClickListener(new OnEntryClickListener() {
+        barChart.setOnEntryClickListener(new OnEntryClickListener() {
             @Override
             public void onClick(int setIndex, int entryIndex, Rect rect) {
-                mTextViewTwo.setText(Integer.toString((int) mValuesTwo[entryIndex]));
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {
-                    mTextViewTwo.animate().alpha(1).setDuration(200);
-
-                }else{
-                    mTextViewTwo.setVisibility(View.VISIBLE);
-
-                }
+                System.out.println("OnClick "+rect.left);
             }
         });
 
-        horChart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {
-                    mTextViewTwo.animate().alpha(0).setDuration(100);
-
-                }else{
-                    mTextViewTwo.setVisibility(View.INVISIBLE);
-
-                }
-            }
-        });
-
-
-        BarSet barSet = new BarSet();
-        Bar bar;
-        for(int i = 0; i < mLabelsTwo.length; i++){
-            bar = new Bar(mLabelsTwo[i], mValuesTwo[i]);
-            if(i == mLabelsTwo.length - 1 )
-                bar.setColor(Color.parseColor("#b26657"));
-            else if (i == 0)
-                bar.setColor(Color.parseColor("#998d6e"));
-            else
-                bar.setColor(Color.parseColor("#506a6e"));
-            barSet.addBar(bar);
+        Tooltip tooltip = new Tooltip(getActivity(), R.layout.barchart_one_tooltip);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            tooltip.setEnterAnimation(PropertyValuesHolder.ofFloat(View.ALPHA, 1));
+            tooltip.setExitAnimation(PropertyValuesHolder.ofFloat(View.ALPHA, 0));
         }
-        horChart.addData(barSet);
-        horChart.setBarSpacing(Tools.fromDpToPx(5));
+        barChart.setTooltips(tooltip);
+
+        BarSet barSet = new BarSet(mLabelsTwo, mValuesTwo[0]);
+        barSet.setColor(Color.parseColor("#a8896c"));
+        barChart.addData(barSet);
+
+        barSet = new BarSet(mLabelsTwo, mValuesTwo[1]);
+        barSet.setColor(Color.parseColor("#c33232"));
+        barChart.addData(barSet);
+
+        barChart.setSetSpacing(Tools.fromDpToPx(-15));
+        barChart.setBarSpacing(Tools.fromDpToPx(35));
+        barChart.setRoundCorners(Tools.fromDpToPx(2));
 
         Paint gridPaint = new Paint();
-        gridPaint.setColor(Color.parseColor("#aab6b2ac"));
+        gridPaint.setColor(Color.parseColor("#8986705C"));
         gridPaint.setStyle(Paint.Style.STROKE);
         gridPaint.setAntiAlias(true);
         gridPaint.setStrokeWidth(Tools.fromDpToPx(.75f));
 
-        horChart.setBorderSpacing(0)
-                .setAxisBorderValues(0, 100, 5)
+        barChart.setBorderSpacing(5)
+                .setAxisBorderValues(0, 10, 2)
                 .setGrid(BarChartView.GridType.FULL, gridPaint)
-                .setXAxis(false)
                 .setYAxis(false)
-                .setLabelsColor(Color.parseColor("#FF8E8A84"))
-                .setXLabels(XController.LabelPosition.NONE);
+                .setXLabels(XController.LabelPosition.OUTSIDE)
+                .setYLabels(YController.LabelPosition.NONE)
+                .setLabelsColor(Color.parseColor("#86705c"))
+                .setAxisColor(Color.parseColor("#86705c"));
 
-        int[] order = {4, 3, 2, 1, 0};
-        horChart.show(new Animation()
+        int[] order = {2, 1, 3, 0, 4};
+        final Runnable auxAction = action;
+        Runnable chartOneAction = new Runnable() {
+            @Override
+            public void run() {
+                showTooltipOne();
+                auxAction.run();
+            }
+        };
+        barChart.show(new Animation()
                 .setOverlap(.5f, order)
-                .setEndAction(action))
+                .setEndAction(chartOneAction))
+        //.show()
         ;
     }
 
@@ -462,24 +445,17 @@ public class ComparisonDaily extends Fragment {
 
         }
 
-        float[] valuesTwoOne = {17f, 26f, 48f, 63f, 94f};
-        chart.updateValues(0, valuesTwoOne);
+        float [][]newValues = {{8.5f, 6.5f, 4.5f, 3.5f, 9f}, {5.5f, 3.0f, 3.0f, 2.5f, 7.5f}};
+        chart.updateValues(0, newValues[0]);
+        chart.updateValues(1, newValues[1]);
         chart.notifyDataUpdate();
     }
 
     public void dismissTwo(ChartView chart, Runnable action){
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {
-            mTextViewTwo.animate().alpha(0).setDuration(100);
-
-        }else{
-            mTextViewTwo.setVisibility(View.INVISIBLE);
-
-        }
-
         chart.dismissAllTooltips();
 
-        int[] order = {0, 1, 2, 3, 4};
+        int[] order = {0, 4, 1, 3, 2};
         chart.dismiss(new Animation()
                 .setOverlap(.5f, order)
                 .setEndAction(action));
@@ -496,53 +472,79 @@ public class ComparisonDaily extends Fragment {
     public void produceThree(ChartView chart, Runnable action){
         BarChartView barChart = (BarChartView) chart;
 
-        Tooltip tip = new Tooltip(getActivity(), R.layout.barchart_one_tooltip);
+        barChart.setOnEntryClickListener(new OnEntryClickListener() {
+            @Override
+            public void onClick(int setIndex, int entryIndex, Rect rect) {
+                System.out.println("OnClick "+rect.left);
+            }
+        });
 
+        Tooltip tooltip = new Tooltip(getActivity(), R.layout.barchart_one_tooltip);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            PropertyValuesHolder alpha = PropertyValuesHolder.ofFloat(View.ALPHA, 1);
-            tip.setEnterAnimation(alpha);
-
-            alpha = PropertyValuesHolder.ofFloat(View.ALPHA,0);
-            tip.setExitAnimation(alpha);
+            tooltip.setEnterAnimation(PropertyValuesHolder.ofFloat(View.ALPHA, 1));
+            tooltip.setExitAnimation(PropertyValuesHolder.ofFloat(View.ALPHA, 0));
         }
+        barChart.setTooltips(tooltip);
 
-        barChart.setTooltips(tip);
+        BarSet barSet = new BarSet(mLabelsThree, mValuesThree[0]);
+        barSet.setColor(Color.parseColor("#a8896c"));
+        barChart.addData(barSet);
 
-        BarSet dataset = new BarSet(mLabelsThree, mValuesThree);
-        dataset.setColor(Color.parseColor("#eb993b"));
-        barChart.addData(dataset);
+        barSet = new BarSet(mLabelsThree, mValuesThree[1]);
+        barSet.setColor(Color.parseColor("#c33232"));
+        barChart.addData(barSet);
 
-        barChart.setBarSpacing(Tools.fromDpToPx(3));
+        barChart.setSetSpacing(Tools.fromDpToPx(-15));
+        barChart.setBarSpacing(Tools.fromDpToPx(35));
+        barChart.setRoundCorners(Tools.fromDpToPx(2));
 
-        barChart.setXLabels(AxisController.LabelPosition.NONE)
-                .setYLabels(AxisController.LabelPosition.NONE)
-                .setXAxis(false)
-                .setYAxis(false);
+        Paint gridPaint = new Paint();
+        gridPaint.setColor(Color.parseColor("#8986705C"));
+        gridPaint.setStyle(Paint.Style.STROKE);
+        gridPaint.setAntiAlias(true);
+        gridPaint.setStrokeWidth(Tools.fromDpToPx(.75f));
 
-        Animation anim = new Animation()
-                .setEasing(new ElasticEase())
-                .setEndAction(action);
+        barChart.setBorderSpacing(5)
+                .setAxisBorderValues(0, 10, 2)
+                .setGrid(BarChartView.GridType.FULL, gridPaint)
+                .setYAxis(false)
+                .setXLabels(XController.LabelPosition.OUTSIDE)
+                .setYLabels(YController.LabelPosition.NONE)
+                .setLabelsColor(Color.parseColor("#86705c"))
+                .setAxisColor(Color.parseColor("#86705c"));
 
-        chart.show(anim);
+        int[] order = {2, 1, 3, 0, 4};
+        final Runnable auxAction = action;
+        Runnable chartOneAction = new Runnable() {
+            @Override
+            public void run() {
+                showTooltipOne();
+                auxAction.run();
+            }
+        };
+        barChart.show(new Animation()
+                .setOverlap(.5f, order)
+                .setEndAction(chartOneAction))
+        //.show()
+        ;
     }
 
     public void updateThree(ChartView chart){
 
         chart.dismissAllTooltips();
 
-        float[] values = {3.5f, 4.7f, 5f, 9f, 5.5f, 5f, 6f, 8f, 11f, 13f,
-                11f, 7f, 6f, 7f, 10f, 11f, 12f, 9f, 8f, 7f,
-                6f, 5f, 4f, 3f, 6f, 7f, 8f, 9f, 10f, 12f,
-                13f, 11, 13f, 10f ,8f, 7f, 5f, 4f, 3f, 7f};
-        chart.updateValues(0, values);
+        float [][]newValues = {{8.5f, 6.5f, 4.5f, 3.5f, 9f}, {5.5f, 3.0f, 3.0f, 2.5f, 7.5f}};
+        chart.updateValues(0, newValues[0]);
+        chart.updateValues(1, newValues[1]);
         chart.notifyDataUpdate();
     }
 
     public void dismissThree(ChartView chart, Runnable action){
 
         chart.dismissAllTooltips();
+        int[] order = {0, 4, 1, 3, 2};
         chart.dismiss(new Animation()
-                .setEasing(new ElasticEase())
+                .setOverlap(.5f, order)
                 .setEndAction(action));
     }
 
